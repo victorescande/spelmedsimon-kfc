@@ -155,6 +155,8 @@ class Ball(Turtle):
         self.goto(random.randint(-300, 300), random.randint(100, 300))  
         self.y_speed = random.randint(-4, -3)
           # bestämmer hastighet på boll
+        if scoreboard and scoreboard.score>=0:
+            screen.bgpic("level1out.gif")
         if scoreboard and scoreboard.score > 24:  
             self.y_speed = random.randint(-7, -4) # höjer hastighet när score ökar
             screen.bgpic("level2out.gif")
@@ -347,7 +349,7 @@ def play_background_music():
     
 def start_game():
     global paddle, ball, scoreboard, player_name, power_up
-
+    screen.bgpic("level1out.gif")
     player_name = screen.textinput("Welcome", "Enter your name:")
     if not player_name:
         player_name = "NoName"
@@ -371,6 +373,7 @@ def start_game():
 
     pygame.mixer.music.load(background_music)
     pygame.mixer.music.play(-1)
+    screen.bgpic("level1out.gif")
 
     screen.listen()
     screen.onkeypress(paddle.start_moving_left, "Left")
